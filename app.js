@@ -93,17 +93,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   document.addEventListener('keyup', control)
 
-  //move down function
-  function moveDown() {
-    undraw()
-    currentPosition += width
-    draw()
-    freeze()
+   //move down function
+   function moveDown() {
+    
+    if(!current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
+      undraw()
+      currentPosition += width
+      draw()
+    } else {
+      freeze();  
+    }
   }
 
   //freeze function
   function freeze() {
-    if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
       current.forEach(index => squares[currentPosition + index].classList.add('taken'))
       //start a new tetromino falling
       random = nextRandom
@@ -114,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
       displayShape()
       addScore()
       gameOver()
-    }
   }
 
   //move the tetromino left, unless is at the edge or there is a blockage
@@ -241,6 +243,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  //restart button
+  const restartBtn = document.querySelector('#restart-button')
+  restartBtn.addEventListener('click', () => {
+    location.reload()
+  })
+
+
   //game over
   function gameOver() {
     if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
@@ -248,5 +257,4 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(timerId)
     }
   }
-
 })
