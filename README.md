@@ -1,1 +1,1 @@
-# Ultimate_Tetris
+# Basic Tetris
