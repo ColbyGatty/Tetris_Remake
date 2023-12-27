@@ -79,6 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+
+
   //assign functions to keyCodes
   function control(e) {
     if(e.keyCode === 37) {
@@ -93,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   document.addEventListener('keyup', control)
 
-   //move down function
+   //move down function and on key hold move down
    function moveDown() {
     
     if(!current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
@@ -103,7 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       freeze();  
     }
-  }
+   }
+
 
   //freeze function
   function freeze() {
@@ -142,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   
-  ///FIX ROTATION OF TETROMINOS A THE EDGE 
+  ///FIX ROTATION OF TETROMINOS At THE EDGE 
   function isAtRight() {
     return current.some(index=> (currentPosition + index + 1) % width === 0)  
   }
@@ -217,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
       timerId = null
     } else {
       draw()
-      timerId = setInterval(moveDown, 1000)
+      timerId = setInterval(moveDown, 400)
       nextRandom = Math.floor(Math.random()*theTetrominoes.length)
       displayShape()
     }
@@ -250,11 +253,14 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 
-  //game over
+  //game over and clear display
   function gameOver() {
     if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
-      scoreDisplay.innerHTML = 'end'
+      scoreDisplay.innerHTML = 'Game Over'
       clearInterval(timerId)
+      document.removeEventListener('keyup', control)
     }
   }
+
+
 })
