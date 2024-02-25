@@ -5,21 +5,25 @@
 }
 
 body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
   background-color: #282c34;
   color: #61dafb;
   font-family: 'Arial', sans-serif;
-  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 }
 
 .container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4%;
+
 }
 
 h3 {
@@ -90,11 +94,13 @@ button:hover {
   border: 1px solid #444;
 }
 
+
 .mini-grid {
   display: grid;
   grid-template-columns: repeat(4, 20px);
   grid-gap: 1px;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-right: -25%;
   background-color: #444;
   border: 2px solid #61dafb;
   border-radius: 5px;
@@ -110,6 +116,8 @@ button:hover {
 
 
 h1 {
+  margin-top: 1%;
   font-size: 48px;
   text-shadow: 10px 5px 5px #000000;
 }
+
